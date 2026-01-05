@@ -18,7 +18,7 @@
 ## 🛠️ 如何使用
 
 ### 1. 获取笔记
-你可以直接在 GitHub 网页上浏览，或者将仓库克隆到本地：
+你可以 **直接在 GitHub 网页上浏览**，或者将仓库克隆到本地：
 ```bash
 git clone https://github.com/Zh4iYuJia/UGcourse-note.git
 ```
