@@ -1,0 +1,134 @@
+<!-- ========================================== -->
+<!-- HTML 考试复习标准模板 (Standard HTML Template) -->
+<!-- ========================================== -->
+
+<!-- 1. 文档声明 (Document Declaration) -->
+<!DOCTYPE html> <!-- 告诉浏览器这是一个 HTML5 文档 -->
+<html lang="en"> <!-- 根元素，lang="en" 表示英语网页 -->
+
+<!-- 2. 头部信息 (Head) - 不会在页面中直接显示 -->
+<head>
+    <meta charset="UTF-8"> <!-- 字符编码，防止乱码 -->
+    <title>About Me</title> <!-- 网页标题 (显示在浏览器标签页上) -->
+    
+    <!-- 引入外部 CSS 样式表 -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- 也可以写内部样式 -->
+    <!-- <style> body { background-color: white; } </style> -->
+</head>
+
+<!-- 3. 主体内容 (Body) - 页面可见内容 -->
+<body>
+    <!-- --- 标题 (Headings) --- -->
+    <!-- h1 到 h6，h1 最大，通常一个页面只有一个 h1 -->
+    <h1>About Me: Joe Bloggs</h1>
+
+    <h2>Key Facts</h2>
+
+    <!-- --- 表格 (Tables) --- -->
+    <!-- table: 表格容器 -->
+    <table>
+        <!-- tr: 表格行 (Table Row) -->
+        <tr>
+            <!-- th: 表头单元格 (Table Header) - 默认加粗居中 -->
+            <th>Name</th>
+            <!-- td: 普通数据单元格 (Table Data) -->
+            <td>Joe Bloggs</td>
+        </tr>
+        <tr>
+            <th>Student ID</th>
+            <td>123456</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>joe.blogss@example.com</td>
+        </tr>
+        <tr>
+            <th>Home Town</th>
+            <td>London</td>
+        </tr>
+    </table>
+
+    <h2>A Short Biography</h2>
+    
+    <!-- --- 图片 (Images) --- -->
+    <!-- src: 图片路径 (相对或绝对) -->
+    <!-- alt: 替代文本 (图片加载失败时显示，对无障碍访问很重要) -->
+    <img src="images/me.jpg" alt="A photo of me playing football.">
+    
+    <!-- --- 段落 (Paragraphs) --- -->
+    <p> 
+        Hi, I'm Joe Bloggs. 
+        I'm a student at the University of Nottingham Ningbo China (UNNC) studying Computer Science. 
+        I'm currently in my second year of study. 
+        I'm from London and I enjoy playing football and going to the gym.
+    </p>
+
+    <h2> My Favourite Things </h2>
+    
+    <!-- --- 分区与类 (Divs & Classes) --- -->
+    <!-- div: 块级容器，用于布局 -->
+    <!-- class: 用于 CSS 样式分类 (可以有多个元素共用同一个 class) -->
+    <div class="box"> 
+        <h3>Hobbies</h3>
+        
+        <!-- --- 无序列表 (Unordered List) --- -->
+        <!-- ul: 列表容器 (默认圆点) -->
+        <ul class="left">
+            <!-- li: 列表项 (List Item) -->
+            <li>Football</li>
+            <li>Gym</li>
+            <li>Video Games</li>
+        </ul>
+    </div>
+
+    <div class="box"> 
+        <h3>Favourite Movies</h3>
+        
+        <!-- --- 有序列表 (Ordered List) --- -->
+        <!-- ol: 列表容器 (默认数字 1, 2, 3) -->
+        <ol>
+            <li>Mission Impossible</li>
+            <li>Avengers</li>
+            <li>Star Wars</li>
+        </ol>
+    </div>
+
+    <h2>Contact Me</h2>
+    <p>Use the form below to send me a message. Remember to leave your name and email address so I can reply!</p>
+
+    <!-- ========================================== -->
+    <!-- 4. 表单 (Forms) - 重点 -->
+    <!-- ========================================== -->
+    <!-- action: 提交给后端的 URL (对应 Flask 的 @app.route) -->
+    <!-- method: 提交方式 (通常是 POST) -->
+    <form action="/message/" method="POST">
+        
+        <!-- --- 文本输入 (Text Input) --- -->
+        <!-- label: 标签，for 属性对应 input 的 id，点击文字可聚焦输入框 -->
+        <label for="name">Name:</label>
+        <!-- type="text": 单行文本框 -->
+        <!-- name="name": 后端获取数据的 key (request.form.get('name')) -->
+        <!-- required: 必填项 -->
+        <input type="text" name="name" id="name" required> 
+        <br> <!-- 换行 -->
+
+        <!-- --- 邮箱输入 (Email Input) --- -->
+        <label for="email">Email:</label>
+        <!-- type="email": 会自动验证邮箱格式 -->
+        <input type="email" name="email" id="email" required>
+        <br>
+
+        <!-- --- 多行文本 (Textarea) --- -->
+        <label for="message">Message:</label>
+        <!-- textarea: 多行文本域，没有 value 属性，内容在标签之间 -->
+        <textarea name="message" id="message" required></textarea>
+        <br>
+
+        <!-- --- 提交按钮 (Submit Button) --- -->
+        <input type="submit" value="Send Message">
+    </form>
+
+</body>
+</html>
