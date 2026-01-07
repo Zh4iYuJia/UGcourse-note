@@ -47,10 +47,13 @@ git clone https://github.com/Zh4iYuJia/UGcourse-note.git
 2. 选择菜单栏的 `文件 (File)` -> `导出 (Export)` -> `PDF`。
 
 ## 🤝 贡献指南
-感谢Blue毒非独在COMP1036笔记做出的contribute
 如果你有其他课程的笔记想要分享，或者发现了内容中的错误，欢迎：
 1. 提交 **Pull Request**。
 2. 提交 **Issue** 反馈问题。
+
+---
+**致谢**感谢Blue毒非独在COMP1036笔记做出的contribute
+---
 
 ## 📄 许可证 (License)
 本仓库的所有内容（包括笔记、代码示例等）均采用 **[CC BY-NC-SA 4.0](LICENSE)** 协议进行许可。
