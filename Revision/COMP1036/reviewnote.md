@@ -19,12 +19,39 @@
     2.  `Not`
     3.  `And`
     4.  `Or`
+
+### ★ 布尔代数速记表 (Boolean Algebra Cheat Sheet)
+这些是**最底层**的公理和定律，所有复杂的化简都能用它们推导出来。(注：`'` 表示 NOT，`·` 表示 AND，`+` 表示 OR)
+
+| 类别 | 逻辑乘 (AND) | 逻辑加 (OR) | 记忆技巧 |
+| :--- | :--- | :--- | :--- |
+| **0/1 律** (Identity/Null) | `X · 1 = X` <br> `X · 0 = 0` | `X + 0 = X` <br> `X + 1 = 1` | 0是乘法黑洞，1是加法黑洞 |
+| **幂等律** (Idempotence) | `X · X = X` | `X + X = X` | 自己跟自己玩，还是自己 |
+| **互补律** (Inverse) | `X · X' = 0` | `X + X' = 1` | 矛盾必死(0)，互补必生(1) |
+| **对合律** (Double Neg) | `(X')' = X` | - | 负负得正 |
+| **结合/交换** | `(XY)Z = X(YZ)` <br> `XY = YX` | `(X+Y)+Z = X+(Y+Z)` <br> `X+Y = Y+X` | 顺序不像减法那样重要 |
+| **❤️ 分配律** (Distributive) | `X(Y+Z) = XY + XZ` | **`X + YZ = (X+Y)(X+Z)`** | **难点**: 加法居然也能分配进乘法里! |
+| **❤️ 德摩根** (De Morgan) | `(XY)' = X' + Y'` | `(X+Y)' = X' · Y'` | **必考**: 断开横线，变符号 |
+| **🔥🔥 消除律** (Common Id) | `X(X'+Y) = XY` | **`X + X'Y = X + Y`** | **终极必考**: 遇到复杂的互补项，直接消掉反的那个！<br>例如: `B' + B(AC) = B' + AC` |
+
+> **💡 高级推导 (衍生技巧)**
+> *   **吸收 (Absorption)**: `X + XY = X` (既然有了X，多出来的XY纯属多余)
+> *   **消除 (Simplification)**: `X + X'Y = X + Y` (既然还要看Y，那X肯定不是1，那X'肯定就是1，划掉)
+
 *   **简化表达式 (Simplification)**: **[23/24 Q1c] [24/25 Q1c]**
-    *   `X + NOT(X) = 1`, `X AND NOT(X) = 0`
-    *   `X + XY = X` (也衍生出 `X + NOT(X)Y = X + Y`)
-    *   **德摩根定律 (De Morgan's Laws)**:
-        *   `Not(x Or y) = Not(x) And Not(y)`
-        *   `Not(x And y) = Not(x) Or Not(y)`
+    *   **核心定律与例题 (Key Laws & Examples)**:
+        *   **吸收律 (Absorption)**: `A(A+B) = A`, `A + AB = A`.
+            *   *例题*: 化简 `A + B'AD + AC` -> `A`
+        *   **冗余律 (Redundancy/Identities)**: `A + A'B = A + B`.
+            *   *例题*: 化简 `A' + A B' C` -> `A' + B'C`
+        *   **德摩根定律 (De Morgan's)**:
+            *   `Not(x Or y) = Not(x) And Not(y)`
+            *   `Not(x And y) = Not(x) Or Not(y)`
+            *   *例题*: 化简 `NOT( A (B' + C) )` -> `A' + B C'`
+        *   **分配律 (Distributive)**: `A + BC = (A+B)(A+C)` (注意此特殊形式).
+            *   *例题*: 化简 `(A + B)(A + B')` -> `A`
+        *   **其他基础**:
+            *   `X + X = X` (幂等), `X + 1 = 1`, `X * 0 = 0`, `X + X' = 1`.
 *   **真值表 (Truth Table)**: **[24/25 Q1d]**
     *   能够列出组合逻辑电路的真值表。
 
@@ -51,21 +78,45 @@
 *   **Mux (选择器)**: `if (sel==0) out=a else out=b`
 *   **DMux**: `if (sel==0) {a=in, b=0} else {a=0, b=in}`
 *   **ALU**: 算术逻辑单元。
+*   **加法器详解 (Adders)**:
+    *   **Half Adder (半加器)**: 算 `a+b`。没有进位输入。
+        *   `Sum = a XOR b` (异或: 不同为1)
+        *   `Carry = a AND b` (与: 全1才进位)
+    *   **Full Adder (全加器)**: 算 `a+b+c`。能处理进位。
+        *   由 **2个 Half Adder + 1个 OR** 组成。
 
 ### 4. 时序逻辑 (Sequential Logic)
-*   **DFF (Data Flip Flop)**: 最基本的时序单元，`out(t) = in(t-1)`。
+*   **基本概念**:
+    *   **DFF (Data Flip Flop)**: 只有在时钟上升沿 (Tick-Tock) 才会吃进新数据，否则一直保持旧数据。 `Out(t) = In(t-1)`。
+    *   **Clock (时钟)**: 也就是那个“哨子”。上升沿 (Rising Edge) 是数据更新的瞬间。
 *   **Register (寄存器)**: **[23/24 Q1d]**
-    *   由 DFF 和 Mux 组成。
-    *   `if (load) out=in else out=out(t-1)` (保持功能)。
+    *   **本质**: "带开关的 DFF"。
+    *   **Load**:
+        *   `load=1`: 吃新数据 (Update)。
+        *   `load=0`: 吃自己吐出来的旧数据 (Keep)。
+    *   **结构**: `Mux(DataOut, DataIn, load) -> DFF` (反馈回路)。
 *   **PC (Program Counter)**: **[23/24 Q1e]**
-    *   逻辑优先级: **Reset > Load (Jump) > Inc**。
-    *   `if (reset) PC=0`
-    *   `else if (load) PC=in` (Jump)
-    *   `else PC++`
+    *   **作用**: 存当前执行到哪行代码了 (下一条指令的地址)。
+    *   **三种模式优先级**: **Reset > Load > Inc**。
+        *   `Reset`: 归零 (重启)。
+        *   `Load`: 跳转 (Jump)。当跳转条件满足时，PC = A寄存器。
+        *   `Inc`: PC++ (顺序执行)。
 
 ---
 
 ## Part 2: Architecture & VM (Question 2 - 25%)
+
+### 1. Hack 汇编 (Hack Assembly) **[23/24 Q2a] [24/25 Q2a]**
+*   **A-Instruction (`@value`)**:
+    *   **语法**: `@100` 或 `@LOOP`。
+    *   **机器码**: `0vvv...v` (最高位是 **0**)。
+    *   **作用**: 将 `value` (或标签对应的行号) 存入 **A 寄存器**。
+    *   *注*: `@END` 这种标签，在汇编器第二次扫描时会被替换成具体的行号(例如 `@18`)，然后转成 `000...10010`。
+*   **C-Instruction (`dest=comp;jump`)**:
+    *   **机器码**: `111...` (最高位是 **1**)。
+    *   **comp**: 计算什么 (D+A, D-1 等)。
+    *   **dest**: 存哪里 (D, M, A)。
+    *   **jump**: 怎么跳 (JGT, JEQ)。如果条件满足，**PC 就会 Load 那个跳的地址**。
 
 ### 1. Hack 汇编语言 (Hack Assembly)
 *   **代码追踪 (Trace)**: **[23/24 Q2a] [24/25 Q2a]**

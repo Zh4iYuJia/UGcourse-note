@@ -1,0 +1,66 @@
+\documentclass[UTF8,a4paper,10pt]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{布尔代数定律速记表 (Boolean Algebra Laws Cheat Sheet)}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+这个速记表总结了布尔代数的基础定律。
+\textbf{符号说明:} $\cdot$ 代表 与 (AND), $+$ 代表 或 (OR), $\bar{A}$ 代表 非 (NOT A)。
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.3\textwidth}|p{0.35\textwidth}|}
+\hline
+\textbf{\#} & \textbf{定律名称} & \textbf{公式} & \textbf{解释与原理} \\ \hline
+
+1 & \textbf{同一律 (Identity)} & $A = A$ \newline $\bar{A} = \bar{A}$ & 
+\textbf{原理:} 变量等于其自身。这是逻辑一致性的基础。 \\ \hline
+
+2 & \textbf{交换律 (Commutative)} & $A \cdot B = B \cdot A$ \newline $A + B = B + A$ & 
+\textbf{原理:} 变量的顺序不影响结果。这与普通代数中的加法和乘法类似。 \\ \hline
+
+3 & \textbf{结合律 (Associative)} & $(A \cdot B) \cdot C = A \cdot (B \cdot C)$ \newline $(A + B) + C = A + (B + C)$ & 
+\textbf{原理:} 分组方式不影响结果。你可以先处理任意一对。 \\ \hline
+
+4 & \textbf{幂等律 (Idempotent)} & $A \cdot A = A$ \newline $A + A = A$ & 
+\textbf{原理:} 重复同一个变量是多余的。“真 且 真 还是 真”；“真 或 真 还是 真”。与普通代数不同 ($x+x=2x$)。 \\ \hline
+
+5 & \textbf{双重否定 (Double Negative)} & $\bar{\bar{A}} = A$ & 
+\textbf{原理:} 负负得正。两次取反回到原始状态。 \\ \hline
+
+6 & \textbf{互补律 (Complementary)} & $A \cdot \bar{A} = 0$ \newline $A + \bar{A} = 1$ & 
+\textbf{原理:} 一个变量和它的反面不可能同时为真（矛盾，交集为0）。但它们之中必须有一个为真（排中律，并集为1）。 \\ \hline
+
+7 & \textbf{交集特性 (Intersection)} & $A \cdot 1 = A$ \newline $A \cdot 0 = 0$ & 
+\textbf{原理:} 与 1 运算保持原值 (恒等)。与 0 运算总是让结果变为 0 (零/吞噬)。 \\ \hline
+
+8 & \textbf{并集特性 (Union)} & $A + 1 = 1$ \newline $A + 0 = A$ & 
+\textbf{原理:} 或 1 运算总是得到 1 (支配)。或 0 运算保持原值 (恒等)。 \\ \hline
+
+9 & \textbf{分配律 (Distributive)} & $A \cdot (B + C) = AB + AC$ \newline $\mathbf{A + (B \cdot C) = (A + B) \cdot (A + C)}$ & 
+\textbf{原理:} 允许展开括号。注意\textbf{第二个公式}是布尔代数特有的（普通代数中加法不能对乘法分配）。 \\ \hline
+
+10 & \textbf{吸收律 (Absorption)} & $A \cdot (A + B) = A$ \newline $A + A \cdot B = A$ & 
+\textbf{原理:} 强条件“吸收”了弱条件。如果 $A$ 为真，那么 $A+B$ 自动为真，B 是什么不重要。 \\ \hline
+
+11 & \textbf{简化律 (Simplification)} & $A \cdot (\bar{A} + B) = A \cdot B$ \newline $\mathbf{A + (\bar{A} \cdot B) = A + B}$ & 
+\textbf{原理:} 也称冗余定律。在 $A + \bar{A}B$ 中，若 A 为真整个式子为真；若 A 为假，则 $\bar{A}$ 为真，结果取决于 B。因此 $\bar{A}$ 这个项是多余的。 \\ \hline
+
+12 & \textbf{德摩根定律 (De Morgan)} & $\overline{A \cdot B} = \bar{A} + \bar{B}$ \newline $\overline{A + B} = \bar{A} \cdot \bar{B}$ & 
+\textbf{原理:} “断长条，变符号”。整体的非 = 个体非的“反逻辑”运算。化简长条非号时的核心定律。 \\ \hline
+
+\end{tabular}
+\end{table}
+
+\end{document}
