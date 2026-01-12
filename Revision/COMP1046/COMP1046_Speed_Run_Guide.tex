@@ -1,0 +1,317 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{CJKutf8}
+\usepackage{xcolor}
+\usepackage{multicol} 
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% 极致紧凑排版: 边距极小，内容密度大
+\geometry{a4paper, margin=0.25in, top=0.3in, bottom=0.3in}
+\setlength{\columnsep}{0.2in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+
+% 自定义标题格式
+\titleformat{\section}{\large\bfseries\color{blue!80!black}}{}{0em}{}[\hrule]
+\titlespacing*{\section}{0pt}{2pt}{2pt}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+
+% 颜色与命令
+\definecolor{concept_col}{RGB}{0, 100, 100} % Teal
+\definecolor{warn_col}{RGB}{200, 0, 0}      % Red
+\definecolor{formula_bg}{gray}{0.95}
+
+\newcommand{\keypoint}[1]{\textbf{\textcolor{concept_col}{#1}}}
+\newcommand{\formula}[1]{\colorbox{formula_bg}{$\displaystyle #1$}}
+\newcommand{\warn}[1]{\textbf{\textcolor{warn_col}{[易错] #1}}}
+
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+
+\begin{center}
+    {\Large \textbf{COMP1046 全面复习速查表 (Full Coverage Cheat Sheet)}}
+\end{center}
+
+\begin{multicols*}{2}
+\footnotesize % 小字号以容纳详情
+
+% ==========================================
+\section{L2: Matrices (矩阵基础)}
+\textbf{基本概念}:
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{Trace (迹)}: $\text{tr}(A) = \sum a_{ii}$ (主对角线元素之和)。
+    \item \keypoint{Symmetric (对称)}: $A = A^T$。
+    \item \keypoint{Identity ($I$)}: 主对角线为1，其余为0。$AI = IA = A$。
+\end{itemize}
+\textbf{运算规则}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{乘法}: $\text{Row}_i(A) \cdot \text{Col}_j(B)$ 生成 $c_{ij}$。
+    \item \textbf{转置}: $(AB)^T = B^T A^T$ (反序)。
+\end{itemize}
+\warn{矩阵乘法不满足交换律 ($AB \neq BA$)}
+
+% ==========================================
+\section{L3: Determinants \& Inverse (行列式与逆)}
+\textbf{行列式 (Determinant)}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{性质}: $\det(AB) = \det(A)\det(B)$; $\det(A^T) = \det(A)$。
+    \item \textbf{拉普拉斯展开}: 选 0 最多的行/列。$\sum (-1)^{i+j} a_{ij} M_{ij}$。
+\end{itemize}
+\textbf{逆矩阵 (Inverse)}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{存在性}: 存在 $\iff \det(A) \neq 0$ (非奇异 Non-singular)。
+    \item \textbf{性质}: $(AB)^{-1} = B^{-1}A^{-1}$。
+\end{itemize}
+\textbf{关键公式}:
+\begin{enumerate}[leftmargin=*]
+    \item \formula{\det(kA_{n \times n}) = k^n \det(A)} (注意次方!)
+    \item \formula{A^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}} (2x2专用)
+\end{enumerate}
+
+% ==========================================
+\section{L4: Rank \& Dependency (秩与线性相关)}
+\textbf{概念定义}:
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{线性组合}: $v = c_1v_1 + \dots + c_nv_n$。
+    \item \keypoint{线性相关 (Dependent)}: 存在非零系数使 $\sum c_i v_i = 0$。($\det=0$)
+    \item \keypoint{秩 (Rank)}: 矩阵中线性无关的行(或列)的最大数目。
+\end{itemize}
+\textbf{等价链条 (The Big Picture)}:
+\begin{center}
+    $\det(A) \neq 0 \iff$ Rank $= n \iff$ 线性无关 $\iff$ 可逆
+\end{center}
+
+% ==========================================
+\section{L5: Linear Systems (线性方程组)}
+\textbf{解法}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Cramer's Rule}: $x_i = \det(A_i) / \det(A)$ (仅用于 $n \times n$ 且 $\det \neq 0$)。
+    \item \textbf{高斯消元}: 化为行阶梯形。
+\end{itemize}
+\textbf{Rouchè-Capelli 定理 (判别式)}:
+比较 $\rho(A)$ 与 $\rho(A|b)$:
+\begin{itemize}[leftmargin=*]
+    \item $\rho(A) < \rho(A|b) \implies$ \textbf{0 解} (Incompatible)。
+    \item $\rho(A) = \rho(A|b) = n \implies$ \textbf{1 解} (Unique)。
+    \item $\rho(A) = \rho(A|b) < n \implies$ \textbf{$\infty$ 解} (Undetermined, $n-\rho$ 个自由变量)。
+\end{itemize}
+\textbf{齐次方程组 ($Ax=0$)}:
+始终有平凡解 $x=0$。若 $\det=0$ (Rank $<n$) 则有非零解。
+
+% ==========================================
+\section{L6: Vector Spaces (向量空间)}
+\textbf{子空间判定 (Subspace Test)}:
+$U \subseteq V$ 是子空间，必须满足:
+\begin{enumerate}[leftmargin=*]
+    \item \keypoint{零向量}: $\mathbf{0} \in U$。
+    \item \keypoint{加法封闭}: $u, v \in U \implies u+v \in U$。
+    \item \keypoint{数乘封闭}: $k \in \mathbb{R}, u \in U \implies ku \in U$。
+\end{enumerate}
+\warn{常见反例: $x+y=1$ (不过原点), $x^2$ (非线性), $xy=0$ (加法不封闭)}
+
+% ==========================================
+\section{L7: Basis \& Dimension (基与维数)}
+\textbf{基 (Basis)}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{定义}: 既\textbf{线性无关}又\textbf{生成}全空间的向量组。
+    \item \textbf{性质}: 空间中任何向量都能被基\textbf{唯一}表示。
+\end{itemize}
+\textbf{维数 (Dimension)}:
+\begin{itemize}[leftmargin=*]
+    \item 基中向量的个数。$\dim(\mathbb{R}^n) = n$。
+    \item \textbf{Steinitz Lemma}: 所有基的大小都一样。
+\end{itemize}
+
+% ==========================================
+\section{L8: Mappings (一般映射)}
+\textbf{类型}:
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{Injective (单射)}: $f(x)=f(y) \implies x=y$ (不重叠)。
+    \item \keypoint{Surjective (满射)}: Image = Target (铺满)。
+    \item \keypoint{Bijective (双射)}: 既单且满 (一一对应，有逆)。
+\end{itemize}
+\textbf{可逆条件}: 只有双射 (Bijective) 才有逆映射。
+
+% ==========================================
+\section{L9: Linear Mappings (线性映射)}
+\textbf{定义}: $f(\alpha u + \beta v) = \alpha f(u) + \beta f(v)$。
+\warn{必须满足 $f(0)=0$。线性 = 矩阵乘法 $Ax$。}
+
+\textbf{两个核心空间}:
+\begin{enumerate}[leftmargin=*]
+    \item \keypoint{Kernel ($\ker f$)}: $\{ x \mid f(x)=0 \}$。
+    \begin{itemize}
+        \item $\ker f = \{0\} \iff$ Injective。
+        \item 计算: 解 $Ax=0$。
+    \end{itemize}
+    \item \keypoint{Image ($\text{Im} f$)}: $\{ Ax \mid x \in V \}$ (列空间)。
+    \begin{itemize}
+        \item $\dim(\text{Im}) = \dim(Target) \iff$ Surjective。
+    \end{itemize}
+\end{enumerate}
+\formula{\dim(V) = \dim(\ker f) + \dim(\text{Im} f)} (Rank-Nullity)
+
+% ==========================================
+\section{L10: Geometric Maps (几何变换)}
+\textbf{输入}: \formula{v = \begin{pmatrix} x \\ y \end{pmatrix}} (列向量!)
+\textbf{矩阵字典 (2D)}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Scaling}: $\begin{pmatrix} k_x & 0 \\ 0 & k_y \end{pmatrix}$
+    \item \textbf{Uniform Scaling}: $\lambda I = \begin{pmatrix} \lambda & 0 \\ 0 & \lambda \end{pmatrix}$
+    \item \textbf{Rotation $\theta$}: $\begin{pmatrix} c & -s \\ s & c \end{pmatrix}$ (逆时针)
+    \item \textbf{Reflection (X-axis)}: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ ($y$变负)
+    \item \textbf{Reflection (Y-axis)}: $\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$ ($x$变负)
+    \item \textbf{Shear-X}: $\begin{pmatrix} 1 & k \\ 0 & 1 \end{pmatrix}$ ($x_{new} = x + ky$)
+\end{itemize}
+\textbf{仿射 (Affine)}: $f(x) = Ax + b$. (平移 Translation $b$ 不是线性的!)
+
+% ==========================================
+\section{L11: Eigenvalues (特征值)}
+\textbf{定义}: $Ax = \lambda x$ ($x \neq 0$)。
+\begin{itemize}[leftmargin=*]
+    \item $x$ 是特征向量 (Eigenvector)，方向不变。
+    \item $\lambda$ 是特征值 (Eigenvalue)，缩放比例。
+\end{itemize}
+\textbf{解题流程}:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{各 $\lambda$}: 解特征方程 \formula{\det(A - \lambda I) = 0}。
+    \item \textbf{各 $x$}: 代入 $\lambda$ 解 $(A-\lambda I)x = 0$ (得基础解系)。
+\end{enumerate}
+\textbf{捷径}:
+\begin{itemize}[leftmargin=*]
+    \item Sum of $\lambda = \text{tr}(A)$。
+    \item Product of $\lambda = \det(A)$。
+    \item 三角矩阵的 $\lambda$ 就是对角线元素。
+\end{itemize}
+
+% ==========================================
+\section{L12: Optimization (微积分优化)}
+\textbf{极值判定 (Extrema)}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Fermat's Thm}: 极值必在 $f'(c)=0$ 或不可导点。
+    \item \textbf{二阶导测试}:
+    \begin{itemize}
+        \item $f'(c)=0, f''(c) > 0 \implies$ \textbf{Min} (Smile $\cup$).
+        \item $f'(c)=0, f''(c) < 0 \implies$ \textbf{Max} (Frown $\cap$).
+        \item $f''(c)=0 \implies$ 测试失效 (可能是拐点)。
+    \end{itemize}
+\end{itemize}
+\textbf{经济学}:
+\begin{itemize}[leftmargin=*]
+    \item Profit $\pi(x) = R(x) - C(x)$。
+    \item Max Profit 条件: $R'(x) = C'(x)$ (即 MR = MC)。
+\end{itemize}
+
+% ==========================================
+\section{核心判定速查 (Instant Judgement)}
+\textbf{1. 逻辑与集合 (Logic \& Sets)}
+\begin{itemize}[leftmargin=*]
+    \item \warn{Implication ($P \to Q$)}: 只有 $T \to F$ 为 **假 (False)**。其他全真。
+    \item \warn{Power Set ($2^A$)}: 元素个数 $= 2^{|A|}$。必须包含 $\emptyset$。
+    \item \keypoint{Reflexive}: 矩阵对角线全 1。
+    \item \keypoint{Symmetric}: 矩阵关于对角线对称 ($A=A^T$)。
+    \item \keypoint{Transitive}: 若 $aRb, bRc \implies aRc$ (三角形路径)。
+\end{itemize}
+
+\textbf{2. 线性方程组 (Linear Systems)}
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{解的个数 (Rouché-Capelli)}:
+    \begin{itemize}
+        \item $r(A) \neq r(A|b)$: \textbf{无解 (0)}。
+        \item $r(A) = r(A|b) = n$ (变量数): \textbf{唯一解 (1)}。
+        \item $r(A) = r(A|b) < n$: \textbf{无穷解 ($\infty$)} (自由变量 $n-r$ 个)。
+    \end{itemize}
+    \item \warn{Cramer's Rule}: 必须用 **原始矩阵** 算行列式，\textbf{严禁} 使用行变换后的矩阵！
+\end{itemize}
+
+\textbf{3. 向量空间 (Vector Spaces)}
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{Subspace 判定}:
+    \begin{itemize}
+        \item (1) 含 $\mathbf{0}$? (2) 加法封闭? (3) 数乘封闭?
+    \end{itemize}
+    \item \textbf{秒杀技巧}:
+        \item 齐次线性 ($2x+y-z=0$) $\to$ \textbf{YES} (Subspace)。
+        \item 非齐次 ($2x=1$) 或 不等式 ($x \ge 0$) $\to$ \textbf{NO}。
+        \item 维度不同 ($R^2$ vs $R^3$) $\to$ \textbf{NO}。
+\end{itemize}
+
+\textbf{4. 线性映射 (Linear Mappings)}
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{Injective (单射)}:
+    \begin{itemize}
+        \item $\iff \ker(f) = \{\mathbf{0}\}$ (核只有零向量)。
+        \item $\iff$ 矩阵列满秩 ($r(A)=n$)。
+    \end{itemize}
+    \item \keypoint{Surjective (满射)}:
+    \begin{itemize}
+        \item $\iff \text{Im}(f) = \text{Codomain}$。
+        \item $\iff$ 矩阵行满秩 ($r(A)=m$)。
+    \end{itemize}
+    \item \keypoint{Bijective (双射)}:
+    \begin{itemize}
+        \item $\iff$ 方阵且 $\det(A) \neq 0$ (可逆)。
+    \end{itemize}
+    \item \keypoint{Rank-Nullity}: $n = \dim(\ker) + \dim(\text{Im})$。
+    \begin{itemize}
+        \item 推论: 对于方阵，单射 $\iff$ 满射 $\iff$ 双射。
+    \end{itemize}
+    \item \keypoint{Inverse}: 若 $g$ 是 $f$ 的逆映射，则 $B = A^{-1}$。
+\end{itemize}
+
+\textbf{5. 矩阵秩与线性相关性 (Rank \& Dependency)}
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{方阵 (Square Matrix $n \times n$)}:
+    \begin{itemize}
+        \item 行列命运绑定: Rank $< n \implies$ 行线性相关 **且** 列线性相关。
+    \end{itemize}
+    \item \keypoint{矩形阵 (Rectangular Matrix $m \times n$)}:
+    \begin{itemize}
+        \item 行秩 = 列秩 = $r$。
+        \item 若 $r < m$ (行数) $\implies$ **行**线性相关。
+        \item 若 $r < n$ (列数) $\implies$ **列**线性相关。
+        \item \warn{注意}: 矩形阵可能“行相关但列无关”，取决谁的数量多。
+    \end{itemize}
+\end{itemize}
+
+\textbf{6. 高频概念澄清 (Conceptual Clarifications)}
+\begin{itemize}[leftmargin=*]
+    \item \keypoint{Invertible 条件}: 必须是 Bijective (双射)。但在同维空间(方阵)下，证明 Injective (单射) 就够了。
+    \item \keypoint{Inverse Image $f^{-1}(W)$}:
+    \begin{itemize}
+        \item 定义即逻辑: $u \in f^{-1}(W)$ \textbf{正意味着} $f(u) \in W$。这是定义的直接翻译。
+    \end{itemize}
+    \item \keypoint{Derive Vector Space (求空间方程)}:
+    \begin{itemize}
+        \item 题意: 给你基向量 $\to$ 求平面方程 $ax+by+cz=0$。
+        \item 方法: 叉乘基向量得到法向量 $\mathbf{n}=(a,b,c)$，系数即为 $a,b,c$。
+    \end{itemize}
+    \item \keypoint{Linear vs Affine vs Neither}:
+    \begin{itemize}
+        \item Linear: $f(x)=Ax$ (无常数项，无高次/乘积项)。
+        \item Affine: $f(x)=Ax+b$ (允许常数项 $b \neq 0$)。
+        \item Neither: 出现 $x^2$ 或 **$xy$ (变量相乘)** 等。
+    \end{itemize}
+    \item \keypoint{Dimension vs Rank vs Nullity (核心易错点)}:
+    \begin{itemize}
+        \item \textbf{Dimension (维数)}: 空间的“容量”。例如 $\mathbb{R}^3$ 的维数是 3。对于 $n$ 列的矩阵，Total Dim = $n$。
+        \item \textbf{Rank (秩)}: 映射后“幸存”的维数。$\text{Rank} = \dim(\text{Im} f)$ (pivot columns)。
+        \item \textbf{Nullity (零化度)}: 映射中“丢失”的维数。$\text{Nullity} = \dim(\ker f)$ (free variables)。
+        \item \warn{误区}: 不要把 Dim 和 Rank 搞混！一个 $3 \times 3$ 矩阵作用在 $\mathbb{R}^3$ 上，Dim 固定是 3，但 Rank 可以是 0, 1, 2 或 3。
+        \item \textbf{Rank = 1}: 完全可能。意味着所有行(或列)都是成比例的 (Proportional)。
+    \end{itemize}
+    \item \keypoint{Matrix Rank vs Mapping Rank (同义词辨析)}:
+    \begin{itemize}
+        \item \textbf{Matrix Rank}: 侧重\textbf{计算} (消元看 Pivot)。定义为最大线性无关行/列数。
+        \item \textbf{Mapping Rank}: 侧重\textbf{几何} (空间压缩)。定义为 $\dim(\text{Im} f)$。
+        \item \textbf{结论}: 它们是同一个东西！Mapping 的 Image 就是 Matrix 的 Column Space。
+    \end{itemize}
+\end{itemize}
+
+\end{multicols*}
+\end{CJK*}
+\end{document}

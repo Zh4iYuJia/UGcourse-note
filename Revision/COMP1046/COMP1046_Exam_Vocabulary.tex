@@ -1,0 +1,153 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{CJKutf8}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+
+% 页面设置
+\geometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+
+% 表格样式
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+
+\title{\textbf{COMP1046 考前必备英文术语表 (Exam Vocabulary)}}
+\author{}
+\date{}
+\maketitle
+
+这份词汇表涵盖了离散数学和线性代数的核心术语，按主题分类，帮助你确保读题无障碍。
+
+\section*{1. 逻辑与证明 (Logic \& Proofs)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{Proposition} & 命题 & 非真即假的陈述句 \\
+\textbf{Tautology} & 重言式 / 永真式 & 永远为 True \\
+\textbf{Contradiction} & 矛盾式 / 永假式 & 永远为 False \\
+\textbf{Contingency} & 可能式 & 既非永真也非永假 \\
+\textbf{Implication} & 蕴含 ($p \to q$) & If p then q \\
+\textbf{Converse} & 逆命题 & $q \to p$ \\
+\textbf{Inverse} & 否命题 & $\neg p \to \neg q$ \\
+\textbf{Contrapositive} & 逆否命题 & $\neg q \to \neg p$ (与原命题同真假) \\
+\textbf{Predicate} & 谓词 & 如 $P(x)$ \\
+\textbf{Domain} & 论域 / 定义域 & 变量 $x$ 的取值范围 \\
+\textbf{Quantifier} & 量词 & $\forall$ (Universal), $\exists$ (Existential) \\
+\textbf{Induction} & 归纳法 & Base case, Hypothesis, Inductive step \\
+\bottomrule
+\end{longtable}
+
+\section*{2. 集合与函数 (Sets \& Functions)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{Set} & 集合 & \\
+\textbf{Subset} & 子集 & $\subseteq$ \\
+\textbf{Power Set} & 幂集 & $\mathcal{P}(A)$, 所有子集的集合 \\
+\textbf{Cardinality} & 势 / 基数 & $|A|$, 元素个数 \\
+\textbf{Intersection} & 交集 & $\cap$ \\
+\textbf{Union} & 并集 & $\cup$ \\
+\textbf{Difference} & 差集 & $A - B$ or $A \setminus B$ \\
+\textbf{Function / Map} & 函数 / 映射 & $f: A \to B$ \\
+\textbf{Domain} & 定义域 & 输入集合 A \\
+\textbf{Codomain} & 陪域 & 可能的输出集合 B \\
+\textbf{Image / Range} & 像 / 值域 & 实际的输出集合 $f(A)$ \\
+\textbf{Injective} & 单射 & One-to-one (不重叠) \\
+\textbf{Surjective} & 满射 & Onto (覆盖B) \\
+\textbf{Bijective} & 双射 & One-to-one correspondence \\
+\textbf{Invertible} & 可逆 & 存在反函数 (必须是 Bijective) \\
+\textbf{Composition} & 复合 & $f \circ g$ \\
+\bottomrule
+\end{longtable}
+
+\section*{3. 关系 (Relations)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{Relation} & 关系 & $a R b$ \\
+\textbf{Reflexive} & 自反性 & $\forall x, xRx$ \\
+\textbf{Symmetric} & 对称性 & $xRy \to yRx$ \\
+\textbf{Anti-symmetric} & 反对称性 & $xRy \land yRx \to x=y$ \\
+\textbf{Transitive} & 传递性 & $xRy \land yRz \to xRz$ \\
+\textbf{Equivalence Relation} & 等价关系 & Ref + Sym + Trans \\
+\textbf{Partial Order} & 偏序关系 & Ref + Anti-sym + Trans \\
+\bottomrule
+\end{longtable}
+
+\newpage
+
+\section*{4. 线性代数基础 (Linear Algebra Basics)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{Matrix} & 矩阵 & Plural: Matrices \\
+\textbf{Square Matrix} & 方阵 & 行数=列数 \\
+\textbf{Identity Matrix} & 单位矩阵 & $I$ \\
+\textbf{Determinant} & 行列式 & $\det(A)$ \\
+\textbf{Trace} & 迹 & $\text{tr}(A)$, 对角线之和 \\
+\textbf{Transpose} & 转置 & $A^T$ \\
+\textbf{Singular} & 奇异的 & 不可逆 ($\det=0$) \\
+\textbf{Non-singular} & 非奇异的 & 可逆 ($\det \neq 0$) \\
+\textbf{Invertible} & 可逆的 & 存在 $A^{-1}$ \\
+\textbf{Rank} & 秩 & 线性无关行/列的最大数目 \\
+\bottomrule
+\end{longtable}
+
+\section*{5. 线性方程组 (Systems of Linear Equations)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{System} & 方程组 & \\
+\textbf{Augmented Matrix} & 增广矩阵 & $(A \mid b)$ \\
+\textbf{Homogeneous} & 齐次的 & 等号右边全是 0 ($Ax=0$) \\
+\textbf{Consistent} & 有解的 & 也叫 Compatible \\
+\textbf{Inconsistent} & 无解的 & 也叫 Incompatible \\
+\textbf{Determined} & 唯一解 & Rank = 变量数 \\
+\textbf{Undetermined} & 无穷多解 & Rank < 变量数 \\
+\textbf{Row Echelon Form} & 行阶梯形 & 用于求秩 \\
+\bottomrule
+\end{longtable}
+
+\section*{6. 向量空间 (Vector Spaces)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{Vector Space} & 向量空间 & \\
+\textbf{Subspace} & 子空间 & 包含0, 加法封闭, 数乘封闭 \\
+\textbf{Linear Combination} & 线性组合 & $c_1 v_1 + \dots + c_n v_n$ \\
+\textbf{Linearly Independent} & 线性无关 & \\
+\textbf{Linearly Dependent} & 线性相关 & \\
+\textbf{Span} & 张成 & 生成的空间 \\
+\textbf{Basis} & 基 & 线性无关且张成全空间的一组向量 \\
+\textbf{Dimension} & 维数 & 基向量的个数 \\
+\bottomrule
+\end{longtable}
+
+\section*{7. 线性映射 (Linear Mappings)}
+\begin{longtable}{p{4cm} p{4cm} p{7cm}}
+\toprule
+\textbf{English Term} & \textbf{Chinese Meaning} & \textbf{Notes} \\
+\midrule
+\textbf{Mapping / Map} & 映射 & \\
+\textbf{Linear Mapping} & 线性映射 & $f(u+v)=f(u)+f(v)$ \\
+\textbf{Affine Mapping} & 仿射映射 & $f(x)=Ax+b$ \\
+\textbf{Endomorphism} & 自同态 & $V \to V$ \\
+\textbf{Kernel} & 核 & $\ker(f) = \{v \mid f(v)=0\}$ \\
+\textbf{Image} & 像 & $\text{Im}(f)$ \\
+\textbf{Rank-Nullity Thm} & 秩-零化度定理 & $\dim(V) = \dim(\ker) + \dim(\text{Im})$ \\
+\bottomrule
+\end{longtable}
+
+\end{CJK*}
+\end{document}
