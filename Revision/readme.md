@@ -1,19 +1,27 @@
 # Revision 资料库
 
-本文件夹包含 COMP1036、COMP1038 和 COMP1048 课程的复习资料、模拟试题及代码模板。
+本文件夹包含 COMP1036、COMP1038、COMP1046 和 COMP1048 课程的复习资料、模拟试题及代码模板。
 
 ## 目录结构
 
 ### COMP1036
 - [Exam_2024_25_Analysis.md](COMP1036/Exam_2024_25_Analysis.md): 2024-25 考试分析
-- [Exam_Analysis.md](COMP1036/Exam_Analysis.md): 往年考试分析
+- [Exam_2022_23_Analysis.md](COMP1036/Exam_2022_23_Analysis.md): 2022-23 考试分析
+- [Exam_Analysis.md](COMP1036/Exam_Analysis.md): 往年考试分析 (2019-2022)
+- [BooleanLawsCheatSheet.tex](COMP1036/BooleanLawsCheatSheet.tex): 布尔代数定律速查表 (LaTeX)
 - [reviewnote.md](COMP1036/reviewnote.md): 复习总结笔记
 - [VM_Complete_Review.md](COMP1036/VM_Complete_Review.md): 虚拟机/体系结构复习完整版
-因为课程逻辑部分包含大量电路图无法使用md笔记呈现，故附上CF大手子蓝毒先生倾情手写笔记一份
+- [BlueDU's note.pdf](COMP1036/BlueDU's%20note.pdf): CF大手子蓝毒先生倾情手写笔记 (包含大量电路图)
 
 ### COMP1038 (PGA)
 - [COMP1038.md](COMP1038/COMP1038.md): 课程复习笔记
 - [1038考前10分钟速记表.md](COMP1038/1038考前10分钟速记表.md): 考前快速回顾要点
+
+### COMP1046
+- [COMP1046_Speed_Run_Guide.tex](COMP1046/COMP1046_Speed_Run_Guide.tex): 考前速通指南 (LaTeX)
+- [Part1_Discrete_Math_Revision_Guide.tex](COMP1046/Part1_Discrete_Math_Revision_Guide.tex): 离散数学复习指南 (LaTeX)
+- [COMP1046_Exam_Vocabulary.tex](COMP1046/COMP1046_Exam_Vocabulary.tex): 考试高频词汇 (LaTeX)
+- [COMP1046_Exam_Solution_2425.tex](COMP1046/COMP1046_Exam_Solution_2425.tex): 2024-25 考试题解 (LaTeX)
 
 ### COMP1048 (DBI)
 - [COMP1048Revision.md](COMP1048/COMP1048Revision.md): 课程复习笔记 (英文版)
