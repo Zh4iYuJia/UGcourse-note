@@ -1,3 +1,6 @@
+---
+render_with_liquid: false
+---
 # COMP1048: 数据库与接口 (2025-2026) 复习指南
 
 基于 Matthew Pike 和 Yanwen Mao 的复习讲座。

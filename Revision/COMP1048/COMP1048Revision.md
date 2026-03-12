@@ -1,3 +1,6 @@
+---
+render_with_liquid: false
+---
 # COMP1048: Databases and Interfaces (2025-2026) Revision
 
 Based on the Revision Lecture by Matthew Pike and Yanwen Mao.
