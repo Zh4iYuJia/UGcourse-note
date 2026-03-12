@@ -1,0 +1,16 @@
+title: UG Course Notes
+description: 本科课程复习笔记、真题解析及重点速记
+theme: jekyll-theme-primer
+
+# 排除不需要渲染的文件
+exclude:
+  - "*.tex"
+  - "*.py"
+  - "*.sql"
+  - "*.html"
+  - LICENSE
+  - "Gemfile"
+  - "Gemfile.lock"
+
+# 让 Jekyll 处理中文文件名
+encoding: utf-8
