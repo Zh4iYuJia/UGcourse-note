@@ -2,15 +2,34 @@ title: UG Course Notes
 description: 本科课程复习笔记、真题解析及重点速记
 theme: jekyll-theme-primer
 
-# 排除不需要渲染的文件
 exclude:
-  - "*.tex"
-  - "*.py"
-  - "*.sql"
-  - "*.html"
   - LICENSE
   - "Gemfile"
   - "Gemfile.lock"
+  # COMP1036
+  - "Revision/COMP1036/Exam_2022_23_Analysis.md"
+  - "Revision/COMP1036/Exam_2024_25_Analysis.md"
+  - "Revision/COMP1036/Exam_Analysis.md"
+  - "Revision/COMP1036/reviewnote.md"
+  - "Revision/COMP1036/VM_Complete_Review.md"
+  - "Revision/COMP1036/BooleanLawsCheatSheet.tex"
+  # COMP1038
+  - "Revision/COMP1038/COMP1038.md"
+  - "Revision/COMP1038/1038考前10分钟速记表.md"
+  # COMP1046
+  - "Revision/COMP1046/COMP1046_Exam_Solution_2425.tex"
+  - "Revision/COMP1046/COMP1046_Speed_Run_Guide.tex"
+  - "Revision/COMP1046/COMP1046_Exam_Vocabulary.tex"
+  - "Revision/COMP1046/Part1_Discrete_Math_Revision_Guide.tex"
+  # COMP1048
+  - "Revision/COMP1048/COMP1048Revision.md"
+  - "Revision/COMP1048/COMP1048Revision_CN.md"
+  - "Revision/COMP1048/1048Mock_Exam_2021_2022.md"
+  - "Revision/COMP1048/1048Mock_Exam_2022_2023.md"
+  - "Revision/COMP1048/1048Mock_Exam_2023_2024.md"
+  - "Revision/COMP1048/SQL quiz note.md"
+  - "Revision/COMP1048/FlaskModel.py"
+  - "Revision/COMP1048/SQLModel.sql"
+  - "Revision/COMP1048/htmlModel.html"
 
-# 让 Jekyll 处理中文文件名
 encoding: utf-8
